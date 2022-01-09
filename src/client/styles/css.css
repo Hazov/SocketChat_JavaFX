@@ -1,0 +1,69 @@
+#mainPane{
+    -fx-background-radius: 30px;
+    -fx-background-color: #616366;
+    -fx-background-insets: 1, 4 4 4 4;
+    -fx-border-width: 5px;
+    -fx-border-color: #AAAEB3;
+    -fx-border-radius: 30px;
+}
+#stackPane{
+    -fx-background-radius: 20px;
+    -fx-background-color: #616366;
+    -fx-background-insets: 1, 0 0 0 4;
+    -fx-border-width: 5px;
+    -fx-border-color: #AAAEB3;
+    -fx-border-radius: 0 0 20px 30px;
+}
+#btnClose{
+    -fx-background-image: url("../resourses/img/delete.png");
+    -fx-background-size: 45 45;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+    -fx-background-color: transparent;
+    -fx-cursor: "HAND";
+}
+#sendBtn{
+    -fx-background-image: url('../resourses/img/send.png');
+    -fx-background-size: 70 70;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+    -fx-background-color: transparent;
+    -fx-cursor: "HAND";
+}
+#toolBar{
+    -fx-background-radius: 28px 28px 0 0;
+}
+#toolBar2{
+    -fx-background-radius: 0 0 28px 28px;
+}
+#stackPane{
+    -fx-background-radius: 0 0 28px 28px;
+}
+#authBox{
+    -fx-background-radius: 0 0 28px 28px;
+}
+@font-face {
+    font-family: 'Quadranta';
+    src: url('../resourses/fonts/Quadranta-Bold.otf');
+    font-style: bold;
+}
+#nameApp{
+    -fx-font-family: Quadranta;
+    -fx-font-size: 30px;
+    -fx-padding: 0 0 0 100px;
+}
+#notifyLabel{
+    -fx-padding: 15 0 0 200px;
+
+}
+#userField{
+    -fx-font-family: "Roboto Light";
+    -fx-font-size: 10px;
+    -fx-background-color: transparent;
+}
+#msgs{
+    -fx-font-family: "Roboto Light";
+    -fx-font-size: 14px;
+}
+
+

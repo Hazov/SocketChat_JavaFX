@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?scenebuilder-stylesheet /styles/style.css?>
+
+<VBox fx:id="mainPane" minHeight="748.0" minWidth="420" prefHeight="796.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.client.main.Controller">
+    <stylesheets><URL value="@../styles/css.css" /></stylesheets>
+    <ToolBar fx:id="toolBar" prefHeight="80.0" prefWidth="410.0">
+        <HBox>
+            <Button fx:id="btnClose" minHeight="45" minWidth="45" onAction="#close" onMousePressed="#sysMini" onMouseReleased="#sysSt" GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label fx:id="nameApp" text="arcticsu">Gauss</Label>
+        </HBox>
+
+    </ToolBar>
+   <StackPane fx:id="stackPane" prefHeight="726.0" prefWidth="410.0" style="-fx-background-color: WHITE;">
+      <children>
+         <VBox fx:id="settingsBox" disable="true" opacity="0.0" prefHeight="629.0" prefWidth="404.0" visible="false">
+            <children>
+               <Button fx:id="setToMsgBtn" mnemonicParsing="false" onAction="#authorized" prefHeight="25.0" prefWidth="404.0" text="Вернуться назад" />
+               <VBox fx:id="SettingsMenuBox" prefHeight="286.0" prefWidth="404.0">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <children>
+                     <VBox fx:id="userMenuSetBox" prefHeight="36.0" prefWidth="404.0" spacing="5.0">
+                        <children>
+                           <Button fx:id="changePassBtn" mnemonicParsing="false" onAction="#showChangePassBox" prefHeight="29.0" prefWidth="108.0" text="Сменить пароль" />
+                           <Button fx:id="changeNickBtn" mnemonicParsing="false" onAction="#showChangeNickBox" prefHeight="29.0" prefWidth="108.0" text="Сменить ник" />
+                           <Button fx:id="infoUserBtn" mnemonicParsing="false" onAction="#showInfoUserBox" prefHeight="25.0" prefWidth="108.0" text="Информация" />
+                        </children>
+                        <padding>
+                           <Insets left="150.0" top="10.0" />
+                        </padding>
+                        <VBox.margin>
+                           <Insets bottom="5.0" />
+                        </VBox.margin>
+                     </VBox>
+                     <VBox fx:id="superMenuSetBox" prefHeight="179.0" prefWidth="404.0" spacing="5.0" style="-fx-background-color: #DCDCDC;">
+                        <children>
+                           <Button fx:id="addUserBySuperBtn" mnemonicParsing="false" onAction="#showCreateUserBox" prefHeight="25.0" prefWidth="183.0" text="Добавить пользователя" />
+                           <Button fx:id="removeUserBySuperBtn" mnemonicParsing="false" onAction="#showRemoveUserBox" prefHeight="25.0" prefWidth="183.0" text="Удалить пользователя" />
+                           <Button fx:id="editUserBySuperBtn" mnemonicParsing="false" onAction="#showSetEditBox" prefHeight="25.0" prefWidth="183.0" text="Изменить пользователя" />
+                           <Button fx:id="infoUserBySuperBtn" mnemonicParsing="false" onAction="#showInfoUserBySuperBox" prefHeight="25.0" prefWidth="183.0" text="Информация о пользователях" />
+                        </children>
+                        <padding>
+                           <Insets bottom="5.0" left="120.0" top="5.0" />
+                        </padding>
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin></VBox>
+                  </children>
+               </VBox>
+               <StackPane fx:id="stackSettings" prefHeight="327.0" prefWidth="404.0">
+                  <children>
+                     <VBox fx:id="changePassBox" disable="true" prefHeight="200.0" prefWidth="100.0" spacing="30.0" visible="false">
+                        <children>
+                           <Label prefHeight="26.0" prefWidth="117.0" text="Смена пароля">
+                              <font>
+                                 <Font size="17.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets left="100.0" />
+                              </VBox.margin>
+                           </Label>
+                           <HBox prefHeight="25.0" prefWidth="304.0" spacing="40.0">
+                              <children>
+                                 <Label text="Введите СТАРЫЙ пароль" />
+                                 <PasswordField fx:id="oldPassField" />
+                              </children>
+                           </HBox>
+                           <HBox prefHeight="25.0" prefWidth="188.0" spacing="40.0">
+                              <children>
+                                 <Label prefHeight="17.0" prefWidth="137.0" text="Введите НОВЫЙ пароль" />
+                                 <PasswordField fx:id="newPassField" />
+                              </children>
+                           </HBox>
+                           <HBox prefHeight="25.0" prefWidth="346.0" spacing="40.0">
+                              <children>
+                                 <Label prefHeight="17.0" prefWidth="135.0" text="Повторите пароль" />
+                                 <PasswordField fx:id="repeatNewPassField" />
+                              </children>
+                           </HBox>
+                           <Button fx:id="acceptchangeBtn" mnemonicParsing="false" onAction="#tryToChangePass" prefHeight="25.0" prefWidth="325.0" text="Сменить" />
+                           <Label fx:id="errChangePass" prefHeight="25.0" prefWidth="328.0" text="Не удалось (проверьте правильность ввода данных)" textFill="RED" visible="false">
+                              <VBox.margin>
+                                 <Insets bottom="30.0" />
+                              </VBox.margin>
+                           </Label>
+                        </children>
+                        <padding>
+                           <Insets left="50.0" top="20.0" />
+                        </padding>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                     </VBox>
+                     <VBox fx:id="changeNickBox" disable="true" prefHeight="200.0" prefWidth="100.0" visible="false">
+                        <children>
+                           <Label prefHeight="33.0" prefWidth="166.0" text="Смена никнейма">
+                              <font>
+                                 <Font size="16.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets left="60.0" />
+                              </VBox.margin>
+                           </Label>
+                           <HBox prefHeight="39.0" prefWidth="264.0" spacing="30.0">
+                              <VBox.margin>
+                                 <Insets top="50.0" />
+                              </VBox.margin>
+                              <children>
+                                 <Label text="Введите новый ник">
+                                    <padding>
+                                       <Insets top="5.0" />
+                                    </padding>
+                                 </Label>
+                                 <TextField fx:id="newNickField" />
+                              </children>
+                           </HBox>
+                           <Button fx:id="acceptChangeNick" mnemonicParsing="false" onAction="#changeNick" prefHeight="29.0" prefWidth="150.0" text="Готово">
+                              <VBox.margin>
+                                 <Insets left="60.0" />
+                              </VBox.margin>
+                           </Button>
+                           <Label fx:id="errChangeNickLabel" textFill="RED">
+                              <VBox.margin>
+                                 <Insets top="10.0" />
+                              </VBox.margin>
+                           </Label>
+                        </children>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                        <padding>
+                           <Insets left="70.0" />
+                        </padding>
+                     </VBox>
+                     <VBox fx:id="infoUserBox" disable="true" prefHeight="200.0" prefWidth="100.0" visible="false">
+                        <children>
+                           <Button fx:id="refreshListUserForUserBtn" mnemonicParsing="false" onAction="#refreshUserListForUser" prefHeight="25.0" prefWidth="99.0" text="Обновить">
+                              <VBox.margin>
+                                 <Insets left="150.0" top="5.0" />
+                              </VBox.margin>
+                           </Button>
+                           <HBox prefHeight="51.0" prefWidth="404.0">
+                              <children>
+                                 <HBox prefHeight="51.0" prefWidth="199.0">
+                                    <children>
+                                       <Label prefHeight="41.0" prefWidth="173.0" text="Ваш логин:" />
+                                       <Label fx:id="currentLogin" prefHeight="45.0" prefWidth="219.0" />
+                                    </children>
+                                    <HBox.margin>
+                                       <Insets left="20.0" />
+                                    </HBox.margin>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label prefHeight="41.0" prefWidth="173.0" text="Ваш Ник:" />
+                                       <Label fx:id="currentNick" prefHeight="45.0" prefWidth="248.0" />
+                                    </children>
+                                    <HBox.margin>
+                                       <Insets right="20.0" />
+                                    </HBox.margin>
+                                 </HBox>
+                              </children>
+                           </HBox>
+                           <ScrollPane prefHeight="265.0" prefWidth="400.0">
+                              <content>
+                                 <VBox fx:id="userListToUser" prefHeight="354.0" prefWidth="405.0" />
+                              </content>
+                           </ScrollPane>
+                        </children>
+                     </VBox>
+                     <VBox fx:id="createUserBox" disable="true" prefHeight="200.0" prefWidth="100.0" spacing="20.0" visible="false">
+                        <children>
+                           <Label text="Создание пользователя">
+                              <padding>
+                                 <Insets left="50.0" />
+                              </padding>
+                              <font>
+                                 <Font size="16.0" />
+                              </font>
+                           </Label>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                              <children>
+                                 <RadioButton fx:id="rSuper" mnemonicParsing="false" text="Суперпользователь">
+                                    <toggleGroup>
+                                       <ToggleGroup fx:id="toogleUser" />
+                                    </toggleGroup>
+                                 </RadioButton>
+                                 <RadioButton fx:id="rUser" mnemonicParsing="false" selected="true" text="Обычный пользователь" toggleGroup="$toogleUser" />
+                              </children>
+                           </HBox>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                              <children>
+                                 <Label text="Введите Никнейм" />
+                                 <TextField fx:id="nickToCreateField" />
+                              </children>
+                           </HBox>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                              <children>
+                                 <Label text="Введите Логин" />
+                                 <TextField fx:id="loginToCreateField">
+                                    <HBox.margin>
+                                       <Insets left="15.0" />
+                                    </HBox.margin>
+                                 </TextField>
+                              </children>
+                           </HBox>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                              <children>
+                                 <Label text="Введите пароль" />
+                                 <PasswordField fx:id="passToCreateField">
+                                    <HBox.margin>
+                                       <Insets left="10.0" />
+                                    </HBox.margin>
+                                 </PasswordField>
+                              </children>
+                           </HBox>
+                           <Button fx:id="acceptCreateUserBtn" mnemonicParsing="false" onAction="#createUser" prefHeight="25.0" prefWidth="115.0" text="Создать">
+                              <VBox.margin>
+                                 <Insets left="100.0" />
+                              </VBox.margin>
+                           </Button>
+                           <Label fx:id="errCreateUserLabel" prefHeight="40.0" prefWidth="320.0" textFill="RED" />
+                        </children>
+                        <StackPane.margin>
+                           <Insets left="50.0" top="20.0" />
+                        </StackPane.margin>
+                     </VBox>
+                     <VBox fx:id="removeUserBox" disable="true" prefHeight="200.0" prefWidth="100.0" spacing="20.0" visible="false">
+                        <children>
+                           <Label prefHeight="31.0" prefWidth="197.0" text="Удаление пользователя">
+                              <font>
+                                 <Font size="17.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets left="110.0" />
+                              </VBox.margin>
+                           </Label>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                              <children>
+                                 <VBox prefHeight="100.0" prefWidth="318.0" spacing="20.0">
+                                    <children>
+                                       <RadioButton fx:id="rbByLogin" mnemonicParsing="false" selected="true" text="По Логину">
+                                          <VBox.margin>
+                                             <Insets left="50.0" />
+                                          </VBox.margin>
+                                          <toggleGroup>
+                                             <ToggleGroup fx:id="toogleDeleteUser" />
+                                          </toggleGroup>
+                                       </RadioButton>
+                                       <HBox fx:id="removeByLoginBox" prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                             <Label prefHeight="17.0" prefWidth="61.0" text="Логин">
+                                                <HBox.margin>
+                                                   <Insets top="5.0" />
+                                                </HBox.margin>
+                                             </Label>
+                                             <TextField fx:id="loginToRemoveField" prefHeight="25.0" prefWidth="110.0" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                                 <VBox prefHeight="100.0" prefWidth="334.0" spacing="20.0">
+                                    <children>
+                                       <RadioButton fx:id="rbByNick" mnemonicParsing="false" text="По Никнейму" toggleGroup="$toogleDeleteUser">
+                                          <VBox.margin>
+                                             <Insets left="50.0" />
+                                          </VBox.margin>
+                                       </RadioButton>
+                                       <HBox fx:id="removeByNickBox" prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                             <Label prefHeight="17.0" prefWidth="77.0" text="Никнейм">
+                                                <HBox.margin>
+                                                   <Insets top="5.0" />
+                                                </HBox.margin>
+                                             </Label>
+                                             <TextField fx:id="nickToRemoveField" prefHeight="25.0" prefWidth="106.0" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets left="10.0" />
+                              </padding>
+                           </HBox>
+                           <Button fx:id="acceptToRemoveUser" mnemonicParsing="false" onAction="#removeUserByAdmin" prefHeight="38.0" prefWidth="201.0" text="Удалить">
+                              <VBox.margin>
+                                 <Insets left="110.0" />
+                              </VBox.margin>
+                           </Button>
+                           <Label fx:id="errRemoveUserLabel" prefHeight="21.0" prefWidth="314.0" textFill="RED">
+                              <VBox.margin>
+                                 <Insets left="60.0" />
+                              </VBox.margin>
+                           </Label>
+                        </children>
+                     </VBox>
+                     <VBox fx:id="setEditBox" disable="true" prefHeight="200.0" prefWidth="100.0" spacing="20.0" visible="false">
+                        <children>
+                           <Label text="Изменить пользователя">
+                              <font>
+                                 <Font size="19.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets left="90.0" />
+                              </VBox.margin>
+                           </Label>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                              <children>
+                                 <VBox prefHeight="100.0" prefWidth="304.0" spacing="20.0">
+                                    <children>
+                                       <RadioButton fx:id="rbByLoginEditUser" mnemonicParsing="false" selected="true" text="По Логину">
+                                          <VBox.margin>
+                                             <Insets left="40.0" />
+                                          </VBox.margin>
+                                          <toggleGroup>
+                                             <ToggleGroup fx:id="toogleEditUser" />
+                                          </toggleGroup>
+                                       </RadioButton>
+                                       <HBox fx:id="byLoginEditBox" prefHeight="25.0" prefWidth="190.0" spacing="20.0">
+                                          <children>
+                                             <Label text="Логин">
+                                                <HBox.margin>
+                                                   <Insets top="5.0" />
+                                                </HBox.margin>
+                                             </Label>
+                                             <TextField fx:id="byLoginEditUserField" prefHeight="25.0" prefWidth="116.0" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                                 <VBox prefHeight="100.0" prefWidth="328.0" spacing="20.0">
+                                    <children>
+                                       <RadioButton fx:id="rbByNickNameEditUser" mnemonicParsing="false" text="По Никнейму" toggleGroup="$toogleEditUser">
+                                          <VBox.margin>
+                                             <Insets left="60.0" />
+                                          </VBox.margin>
+                                       </RadioButton>
+                                       <HBox fx:id="byNickEditBox" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                          <children>
+                                             <Label text="Никнейм">
+                                                <HBox.margin>
+                                                   <Insets top="5.0" />
+                                                </HBox.margin>
+                                             </Label>
+                                             <TextField fx:id="byNickNameEditUserField" prefHeight="25.0" prefWidth="121.0" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                              <children>
+                                 <Label text="Новый Логин" />
+                                 <TextField fx:id="newLoginEditUserField">
+                                    <HBox.margin>
+                                       <Insets left="17.0" />
+                                    </HBox.margin>
+                                 </TextField>
+                              </children>
+                              <VBox.margin>
+                                 <Insets left="70.0" />
+                              </VBox.margin>
+                           </HBox>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                              <children>
+                                 <Label text="Новый Никнейм" />
+                                 <TextField fx:id="newNickEditUserField" />
+                              </children>
+                              <VBox.margin>
+                                 <Insets left="70.0" />
+                              </VBox.margin>
+                           </HBox>
+                           <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                              <children>
+                                 <Label text="Новый пароль" />
+                                 <TextField fx:id="newPassEditUserField">
+                                    <HBox.margin>
+                                       <Insets left="10.0" />
+                                    </HBox.margin>
+                                 </TextField>
+                              </children>
+                              <VBox.margin>
+                                 <Insets left="70.0" />
+                              </VBox.margin>
+                           </HBox>
+                           <VBox prefHeight="118.0" prefWidth="404.0">
+                              <children>
+                                 <Label prefHeight="28.0" prefWidth="107.0" text="Привилегии" underline="true">
+                                    <VBox.margin>
+                                       <Insets left="150.0" />
+                                    </VBox.margin>
+                                 </Label>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                    <children>
+                                       <RadioButton fx:id="rbSuperEdit" mnemonicParsing="false" text="Суперпользователь">
+                                          <toggleGroup>
+                                             <ToggleGroup fx:id="privilegesEdit" />
+                                          </toggleGroup>
+                                       </RadioButton>
+                                       <RadioButton fx:id="rbUserEdit" mnemonicParsing="false" selected="true" text="Обычный пользователь" toggleGroup="$privilegesEdit" />
+                                    </children>
+                                    <VBox.margin>
+                                       <Insets left="30.0" top="5.0" />
+                                    </VBox.margin>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <Button fx:id="acceptEditUserByAdmin" mnemonicParsing="false" onAction="#acceptEditUserByAdmin" text="Принять изменения">
+                              <VBox.margin>
+                                 <Insets left="130.0" />
+                              </VBox.margin>
+                           </Button>
+                           <Label fx:id="errEditUserLabel" textFill="RED">
+                              <VBox.margin>
+                                 <Insets bottom="10.0" left="90.0" />
+                              </VBox.margin>
+                           </Label>
+                        </children>
+                        <StackPane.margin>
+                           <Insets left="10.0" top="10.0" />
+                        </StackPane.margin>
+                     </VBox>
+                     <VBox fx:id="infoUserBySuperBox" disable="true" prefHeight="200.0" prefWidth="100.0" visible="false">
+                        <children>
+                           <Button fx:id="refreshListUserForSuperBtn" mnemonicParsing="false" onAction="#refreshUserListForSuper" prefHeight="25.0" prefWidth="99.0" text="Обновить">
+                              <VBox.margin>
+                                 <Insets left="150.0" top="5.0" />
+                              </VBox.margin>
+                           </Button>
+                           <HBox prefHeight="51.0" prefWidth="404.0">
+                              <children>
+                                 <HBox prefHeight="51.0" prefWidth="199.0">
+                                    <children>
+                                       <Label prefHeight="41.0" prefWidth="173.0" text="Ваш логин:" />
+                                       <Label fx:id="currentLoginS" prefHeight="45.0" prefWidth="219.0" />
+                                    </children>
+                                    <HBox.margin>
+                                       <Insets left="20.0" />
+                                    </HBox.margin>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label prefHeight="41.0" prefWidth="173.0" text="Ваш Ник:" />
+                                       <Label fx:id="currentNickS" prefHeight="45.0" prefWidth="248.0" />
+                                    </children>
+                                    <HBox.margin>
+                                       <Insets right="20.0" />
+                                    </HBox.margin>
+                                 </HBox>
+                              </children>
+                           </HBox>
+                           <ScrollPane prefHeight="265.0" prefWidth="400.0">
+                              <content>
+                                 <VBox fx:id="userListToSuper" prefHeight="354.0" prefWidth="405.0" />
+                              </content>
+                           </ScrollPane>
+                        </children>
+                     </VBox>
+                  </children>
+               </StackPane>
+               <Pane prefHeight="110.0" prefWidth="404.0">
+                  <children>
+                     <Label fx:id="dateTimeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="173.0" text="Date/time" />
+                  </children>
+                  <VBox.margin>
+                     <Insets left="120.0" />
+                  </VBox.margin>
+               </Pane>
+            </children>
+         </VBox>
+         <VBox fx:id="chatBox" disable="true" opacity="0.0" prefHeight="631.0" prefWidth="404.0" visible="false">
+            <children>
+               <HBox prefHeight="24.0" prefWidth="404.0">
+                  <children>
+                     <Button fx:id="settingsBtn" mnemonicParsing="false" onAction="#toSettings" prefHeight="25.0" prefWidth="404.0" text="Настройки" />
+                     <Button fx:id="toAuthBtn" mnemonicParsing="false" onAction="#endSession" prefHeight="25.0" prefWidth="382.0" text="Выход" />
+                  </children>
+               </HBox>
+               <ScrollPane fx:id="scrollMsg" hbarPolicy="NEVER" pannable="true" prefHeight="608.0" prefWidth="400.0" vbarPolicy="NEVER" vvalue="1.0">
+                  <content>
+                     <VBox fx:id="msgs" prefHeight="478.0" prefWidth="374.0" spacing="5.0">
+                        <padding>
+                           <Insets left="5.0" />
+                        </padding>
+                     </VBox>
+                  </content>
+               </ScrollPane>
+                <ToolBar fx:id="toolBar2" prefHeight="182.0" prefWidth="400.0">
+            
+                    <HBox>
+                       <VBox prefHeight="112.0" prefWidth="294.0">
+                           <TextArea fx:id="userField" maxHeight="60" onKeyPressed="#sendMsgOnKeys" prefHeight="60.0" prefWidth="290.0">
+                               <VBox.margin>
+                              <Insets top="20" /> </VBox.margin>
+                           </TextArea>
+                           <Label fx:id="notifyLabel">Ctrl+Enter</Label>
+                       </VBox>
+                                      <Button fx:id="sendBtn" minHeight="70.0" minWidth="70.0" onAction="#sendMsgOnBtn" prefHeight="70.0" prefWidth="70.0" GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                          <HBox.margin>
+                           <Insets left="10.0" top="20.0" />
+                        </HBox.margin>
+                     </Button>
+                    </HBox>
+                </ToolBar>
+            </children>
+         </VBox>
+         <VBox fx:id="authBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="647.0" prefWidth="404.0" style="-fx-background-color: WHITE;">
+            <children>
+               <Label prefHeight="83.0" prefWidth="241.0" text="Авторизация" textAlignment="CENTER">
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <font>
+                     <Font size="35.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets left="100.0" top="20.0" />
+                  </VBox.margin>
+               </Label>
+               <Label prefHeight="73.0" prefWidth="209.0" text="Введите логин и пароль" textAlignment="CENTER">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets left="110.0" />
+                  </VBox.margin>
+               </Label>
+               <HBox prefHeight="53.0" prefWidth="410.0">
+                  <children>
+                     <Label prefHeight="25.0" prefWidth="140.0" text="Логин" textAlignment="CENTER">
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                        <HBox.margin>
+                           <Insets left="50.0" />
+                        </HBox.margin>
+                     </Label>
+                     <TextField fx:id="loginField" onAction="#connect" prefHeight="25.0" prefWidth="280.0" promptText="Введите логин">
+                        <HBox.margin>
+                           <Insets right="50.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+               </HBox>
+               <HBox prefHeight="53.0" prefWidth="410.0">
+                  <children>
+                     <Label prefHeight="25.0" prefWidth="140.0" text="Пароль" textAlignment="CENTER">
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                        <HBox.margin>
+                           <Insets left="50.0" />
+                        </HBox.margin>
+                     </Label>
+                     <PasswordField fx:id="passField" onAction="#connect" prefHeight="25.0" prefWidth="280.0" promptText="Введите пароль">
+                        <HBox.margin>
+                           <Insets right="50.0" />
+                        </HBox.margin>
+                     </PasswordField>
+                  </children>
+               </HBox>
+               <Button fx:id="authBtn" mnemonicParsing="false" onAction="#connect" prefHeight="35.0" prefWidth="260.0" text="Войти">
+                  <VBox.margin>
+                     <Insets left="80.0" />
+                  </VBox.margin>
+               </Button>
+               <Button fx:id="authLogInBtn" mnemonicParsing="false" onAction="#loginView" prefHeight="35.0" prefWidth="260.0" text="Авторизоваться">
+                  <VBox.margin>
+                     <Insets left="80.0" top="10.0" />
+                  </VBox.margin>
+               </Button>
+               <HBox fx:id="expressionLine" disable="true" prefHeight="49.0" prefWidth="400.0" spacing="30.0" visible="false">
+                  <children>
+                     <Label fx:id="authExpressionLbl" text="Expression">
+                        <HBox.margin>
+                           <Insets top="5.0" />
+                        </HBox.margin>
+                     </Label>
+                     <TextField fx:id="solutionField" onAction="#sendSolution" prefHeight="25.0" prefWidth="68.0" />
+                     <Button fx:id="sendSolutionBtn" mnemonicParsing="false" onAction="#sendSolution" text="Отправить" />
+                  </children>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets left="30.0" top="15.0" />
+                  </padding>
+               </HBox>
+               <Label fx:id="authErrLabel" prefHeight="45.0" prefWidth="237.0" textFill="RED">
+                  <VBox.margin>
+                     <Insets left="90.0" top="30.0" />
+                  </VBox.margin>
+               </Label>
+            </children>
+         </VBox>
+         <VBox fx:id="logInBox" disable="true" opacity="0.0" prefHeight="200.0" prefWidth="100.0" visible="false">
+            <children>
+               <Label prefHeight="55.0" prefWidth="235.0" text="Регистрация">
+                  <VBox.margin>
+                     <Insets left="90.0" top="50.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font size="38.0" />
+                  </font>
+               </Label>
+               <HBox prefHeight="48.0" prefWidth="404.0">
+                  <children>
+                     <Label text="Введите ник">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="30.0" top="5.0" />
+                        </HBox.margin>
+                     </Label>
+                     <TextField fx:id="logInNickField" prefHeight="32.0" prefWidth="213.0">
+                        <HBox.margin>
+                           <Insets left="30.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox prefHeight="48.0" prefWidth="404.0">
+                  <children>
+                     <Label text="Введите логин">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="30.0" top="5.0" />
+                        </HBox.margin>
+                     </Label>
+                     <TextField fx:id="logInloginField" prefHeight="32.0" prefWidth="213.0">
+                        <HBox.margin>
+                           <Insets left="15.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+               </HBox>
+               <HBox prefHeight="48.0" prefWidth="404.0">
+                  <children>
+                     <Label text="Введите пароль">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="30.0" top="5.0" />
+                        </HBox.margin>
+                     </Label>
+                     <TextField fx:id="logInPassField" prefHeight="32.0" prefWidth="213.0">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+               </HBox>
+               <HBox prefHeight="48.0" prefWidth="404.0">
+                  <children>
+                     <VBox prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                           <Label prefHeight="27.0" prefWidth="122.0" text="Повторите">
+                              <font>
+                                 <Font size="16.0" />
+                              </font>
+                           </Label>
+                           <Label prefHeight="25.0" prefWidth="60.0" text="пароль">
+                              <font>
+                                 <Font size="16.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets left="20.0" />
+                              </VBox.margin>
+                           </Label>
+                        </children>
+                        <HBox.margin>
+                           <Insets left="30.0" />
+                        </HBox.margin>
+                     </VBox>
+                     <TextField fx:id="loginRePassField" prefHeight="32.0" prefWidth="213.0">
+                        <HBox.margin>
+                           <Insets left="22.0" top="10.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+               </HBox>
+               <Button fx:id="endLogInBtn" mnemonicParsing="false" onAction="#tryToLogin" prefHeight="42.0" prefWidth="240.0" text="Зарегистрироваться">
+                  <VBox.margin>
+                     <Insets left="80.0" top="30.0" />
+                  </VBox.margin>
+               </Button>
+               <Label fx:id="logInErrLabel" prefHeight="36.0" prefWidth="181.0" textFill="RED">
+                  <VBox.margin>
+                     <Insets left="120.0" top="30.0" />
+                  </VBox.margin>
+               </Label>
+               <Hyperlink fx:id="toAuthHyper" onAction="#backToAuth" text="Назад">
+                  <VBox.margin>
+                     <Insets left="340.0" top="110.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Hyperlink>
+            </children>
+         </VBox>
+         <Pane fx:id="successfulBox" disable="true" opacity="0.0" prefHeight="663.0" prefWidth="409.0" style="-fx-background-color: #89ff5b;">
+            <children>
+               <Label layoutX="91.0" layoutY="478.0" prefHeight="68.0" prefWidth="241.0" text="УСПЕШНО!">
+                  <font>
+                     <Font size="46.0" />
+                  </font>
+               </Label>
+            </children>
+         </Pane>
+      </children>
+   </StackPane>
+</VBox>
